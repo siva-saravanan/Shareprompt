@@ -4,6 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+
+import Google from "@node_modules/next-auth/providers/google";
+
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -19,7 +24,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'>
+    <nav className='flex justify-between fixed top-0 left-0 w-full bg-white shadow-md z-50 px-6 py-4'>
       <Link href='/' className='flex gap-2 flex-center'>
         <Image
           src='/assets/images/logo.svg'
@@ -28,7 +33,7 @@ const Nav = () => {
           height={30}
           className='object-contain'
         />
-        <p className='logo_text'>Promptopia</p>
+        <p className='logo_text'>sharePrompt</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -55,7 +60,9 @@ const Nav = () => {
           </div>
         ) : (
           <>
+          <div className="flex items-center font-satoshi text-xl font-semi-bold mr-3">continue with</div>
             {providers &&
+              
               Object.values(providers).map((provider) => (
                 <button
                   type='button'
@@ -63,11 +70,12 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className='black_btn'
+                  className='black_btn m-2'
                 >
-                  Sign in
+                  {provider.name==="Google" ? <div className="flex justify-between gap-1 items-center">{provider.name} <FaGoogle/></div> : <div className="flex justify-between gap-1 items-center">{provider.name} <FaGithub />
+                    </div>}
                 </button>
-              ))}
+              )) }
           </>
         )}
       </div>
@@ -124,9 +132,10 @@ const Nav = () => {
                   onClick={() => {
                     signIn(provider.id);
                   }}
-                  className='black_btn'
+                  className='black_btn m-1 '
                 >
-                  Sign in
+                  {provider.name==="Google" ? <div className="flex justify-between gap-1 items-center"><FaGoogle/></div> : <div className="flex justify-between gap-1 items-center"><FaGithub />
+                  </div>}
                 </button>
               ))}
           </>

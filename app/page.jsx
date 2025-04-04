@@ -1,8 +1,13 @@
-import React from 'react'
+'use client'
+
+import React, { Suspense } from 'react'
 import Feed from '@components/Feed'
+import { useSession } from '@node_modules/next-auth/react'
+import Image from '@node_modules/next/image'
 const Home = () => {
+  const {data :session} = useSession() ; 
   return (
-    <section className='w-full flex-center flex-col'>
+    <section className='w-full flex-center flex-col mt-16'>
         <h1 className='head_text text-center'>Discover and share 
         <br className='max-md :hidden'/>
         <span className='orange_gradient text-center'>
@@ -10,10 +15,14 @@ const Home = () => {
         </span>
         </h1>
         <p className='desc text-center'>
-          promptopia is a tool eto make the ease of prompting engineering 
+         Prompting made easy
 
         </p>
-        <Feed></Feed>
+        
+        {<Feed />}
+        
+       
+        
     </section>
   )
 }

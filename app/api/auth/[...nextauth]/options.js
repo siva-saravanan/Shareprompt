@@ -1,8 +1,9 @@
 import GithubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google"
 
 
-import { connectDB } from "@utils/database";
-import User from "@models/user";
+import { connectDB } from "@utils/database.js";
+import User from "@models/user.js";
 
 
 export const options = {
@@ -11,6 +12,11 @@ export const options = {
         clientId: process.env.GITHUB_ID,
         clientSecret: process.env.GITHUB_SECRET,
       }),
+      GoogleProvider({
+        clientId : process.env.GOOGLE_ID , 
+        clientSecret: process.env.GOOGLE_SECRET,
+      })
+    
     ],
     callbacks: {
         async session({ session }) {
@@ -32,7 +38,7 @@ export const options = {
               await User.create({
                 email: profile.email,
                 username: profile.name.replace(" ", "").toLowerCase(),
-                image: profile.picture,
+                image:  profile.avatar_url ? profile.avatar_url : profile.picture ,
               });
             }
     

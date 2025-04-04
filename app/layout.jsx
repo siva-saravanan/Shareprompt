@@ -4,8 +4,8 @@ import '@styles/globals.css'
 
 import React from 'react'
 export const metadata = {
-    title :  "siva" , 
-    description : "siva project"
+    title :  "sharePrompt" , 
+    description : "to share and discover prompts"
 }
 function RootLayout ({
     children 
@@ -14,19 +14,13 @@ function RootLayout ({
         <Provider>
         <html lang='en'>
             <body>
-               
-
-                    <div className='main'>
+                 <div className='main'>
                         <div className='gradient'/>
                     </div>
                     <main className='app'>
                         <Nav/>
                         {children}
                     </main >
-
-               
-              
-                
                 </body>
     
         </html>

@@ -4,7 +4,7 @@ const Form = ({
     type,post,setpost,submitting,handleSubmit,
 }) => {
   return (
-    <section className='w-full max-w-full flex-start flex-col '>
+    <section className='w-full max-w-full flex-start flex-col mt-16'>
         <h1 className='head_text text-left'>
             <span>{type} post  </span>
         </h1>
@@ -47,10 +47,10 @@ const Form = ({
 
         </textarea>
         <div className='flex-end mt-5 gap-3'>
-            <Link href='/' className='text-grey-500 text-lg text-white font-semibold bg-slate-400 p-2 rounded-2xl'>
+            <Link href='/profile' className='text-grey-500 text-lg text-white font-semibold bg-slate-500 px-4 py-2 rounded-full shadow-md'>
                 cancel
             </Link>
-            <button className='bg-orange-500 text-white font-semibold  text-lg p-2 ml-5 rounded-2xl'
+            <button className='bg-orange-400 text-white font-semibold  text-lg px-4 py-2 ml-5 rounded-full shadow-md'
             onClick={()=> handleSubmit}>
                 submit
             </button>
